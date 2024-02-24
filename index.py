@@ -1,5 +1,6 @@
 import pd
 import Encryption_files
+import os
 
 pd.set_pd()
 
@@ -66,4 +67,7 @@ def write_to_file(filename, mode='a'):
         print(f"File '{filename}' not found.")
 
 filename4 = 'Files/index.txt'
+if os.path.exists(filename4):
+    # If the file exists, delete it
+    os.remove(filename4)
 write_to_file(filename4)

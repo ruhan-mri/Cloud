@@ -74,8 +74,8 @@ Evaluator.EvalKeyGenV2(p)
 print(Evaluator)
 
 # Generate random message
-n1, n2 = 15, 15
-# n1, n2 = randint(-(2**15),2**15-1), randint(-(2**15),2**15-1)
+# n1, n2 = 15, 15
+n1, n2 = randint(-(2**15),2**15-1), randint(-(2**15),2**15-1)
 
 print("--- Random integers n1 and n2 are generated.")
 print("* n1: {}".format(n1))
@@ -97,10 +97,7 @@ print("")
 
 # Encrypt message
 ct1 = Evaluator.Encryption(m1)
-ct2 = Evaluator.Encryption(m1)
-
-
-
+ct2 = Evaluator.Encryption(m2)
 
 
 print("--- m1 and m2 are encrypted as ct1 and ct2.")
@@ -116,7 +113,7 @@ ct = Evaluator.HomomorphicAddition(ct1,ct2)
 mt = Evaluator.Decryption(ct)
 
 nr = Evaluator.IntDecode(mt) 
-ne = (n1-n2)*n1 
+ne = (n1+n2)
 
 print("--- Performing ct_add = Enc(m1) + Enc(m2)")
 print("* ct_add[0] :{}".format(ct[0]))
@@ -131,18 +128,6 @@ if nr == ne:
 else:
     print("* Homomorphic addition does not work.")
 print("")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -188,27 +173,27 @@ else:
     print("* Homomorphic multiplication does not work.")
 print("")
 
-# Multiply two message (relinearization v1)
-ct = Evaluator.HomomorphicMultiplication(ct1,ct)
-ct = Evaluator.RelinearizationV1(ct)
-mt = Evaluator.Decryption(ct)
+# # Multiply two message (relinearization v1)
+# ct = Evaluator.HomomorphicMultiplication(ct1,ct)
+# ct = Evaluator.RelinearizationV1(ct)
+# mt = Evaluator.Decryption(ct)
 
-nr = Evaluator.IntDecode(mt)
-ne = (n1*n2)
+# nr = Evaluator.IntDecode(mt)
+# ne = (n1*n2)
 
-print("--- Performing ct_mul = Enc(m1) * Enc(m2) (with relinearization v1)")
-print("* ct_mul[0] :{}".format(ct[0]))
-print("* ct_mul[1] :{}".format(ct[1]))
-print("--- Performing ct_dec = Dec(ct_sub)")
-print("* ct_dec    :{}".format(mt))
-print("--- Performing ct_dcd = Decode(ct_dec)")
-print("* ct_dcd    :{}".format(nr))
+# print("--- Performing ct_mul = Enc(m1) * Enc(m2) (with relinearization v1)")
+# print("* ct_mul[0] :{}".format(ct[0]))
+# print("* ct_mul[1] :{}".format(ct[1]))
+# print("--- Performing ct_dec = Dec(ct_sub)")
+# print("* ct_dec    :{}".format(mt))
+# print("--- Performing ct_dcd = Decode(ct_dec)")
+# print("* ct_dcd    :{}".format(nr))
 
-if nr == ne:
-    print("* Homomorphic multiplication works.")
-else:
-    print("* Homomorphic multiplication does not work.")
-print("")
+# if nr == ne:
+#     print("* Homomorphic multiplication works.")
+# else:
+#     print("* Homomorphic multiplication does not work.")
+# print("")
 
 """
 # Multiply two message (relinearization v2)
@@ -232,4 +217,3 @@ if nr == ne:
 else:
     print("* Homomorphic multiplication does not work.")
 """
-#
