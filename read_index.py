@@ -57,6 +57,8 @@ if(PD_user == PD_verify):
     randomized_key = []
 
     user_input = input("Search your keys : ")
+    
+    user_input = user_input.lower()
     user_input = user_input.split()
     user_ct = []
 
